@@ -1,8 +1,10 @@
-
 import genanki
 modelID = 8
 # modelID should be random number hardcoded into myModel
 # deckID should be a random number hardcoded into myDeck
+
+
+
 
 myModel=genanki.Model(
     modelID,
