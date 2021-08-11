@@ -1,8 +1,11 @@
-
 import genanki
+import pandas as pd
 modelID = 8
 # modelID should be random number hardcoded into myModel
 # deckID should be a random number hardcoded into myDeck
+
+
+
 
 myModel=genanki.Model(
     modelID,
@@ -24,6 +27,16 @@ note=genanki.Note(
 )
 
 
+def gen_cards(n):
+    deck=[]
+    data = [
+            ["hello", "answer"],
+            ["fill_in_blank", "answer"]
+            ]
+    for i in range(0,n):
+        card = Card(data)
+        deck += []
+    return deck
 
 class Card:
     """
@@ -31,9 +44,9 @@ class Card:
 
     """
 
-    def __init__(self):
-        self.question = str
-        self.answer = str
+    def __init__(self, question, answer):
+        self.question = question
+        self.answer = answer
         self.type = self.type(self.question)
 
     def type(self):
@@ -83,8 +96,12 @@ arr = []
 
 
 
+def read_from_csv(filename):
+    xl = pd.ExcelFile(filename)
 
 
+
+    pass
 
 
 
