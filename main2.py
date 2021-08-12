@@ -1,19 +1,22 @@
-import genanki
-import pandas as pd
 
-sheet_id = "1wXG90uXpzrtKjYEhAbXCtH7sMbrx582X8Z_gxwDrcYY"
-sheet_name = "Approved"
-url = f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tg?tqx=out:csv&sheet={sheet_name}"
+'''
+need way to skip existing cards
 
-print(url)
+'''
 
 
 
-
-
-
-
-
+sheet= [['Front', 'Back', 'Cloze1', 'Cloze2', '', 'Image1', 'Image2'],
+        ['Q1', 'No', 'This', 'Is', 'Patrick'],
+        ['Q2', '', 'Yes'],
+        ['Q3', 'No', 'Cloze'],
+        ['Q4', '', 'Break1'],
+        ['Q5', '', '', 'Break2'],
+        ['', 'Break3'],
+        ['', '', 'Break4'],
+        [],
+        ['Check Q', 'Check A', 'Check C1', '', '', 'Break']
+    ]
 
 
 

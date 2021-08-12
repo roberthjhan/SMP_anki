@@ -10,24 +10,20 @@ modules
 pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
 """
 
-API_KEY = "AIzaSyDbxsmCG4O5egNtvX57vs3avctmwzLPGAc"
+API_KEY = "AIzaSyB-vBUhBie0GlWVQvyvJAi69kYth6Duo-E"
 key = API_KEY
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
-
-SHEET_ID = "wXG90uXpzrtKjYEhAbXCtH7sMbrx582X8Z_gxwDrcYY"
+SHEET_ID = "1wXG90uXpzrtKjYEhAbXCtH7sMbrx582X8Z_gxwDrcYY"
 SHEET_RANGE = "Approved!A:G"
 
-# API_KEY = "AIzaSyDbxsmCG4O5egNtvX57vs3avctmwzLPGAc"
-# key = API_KEY
-# SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
-#
-# SHEET_ID = "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms"
-# SHEET_RANGE = "Class Data!A2:E"
-
-
-def main():
+def get_sheet():
     """Shows basic usage of the Sheets API.
     Prints values from a sample spreadsheet.
+
+    Calls the google sheets API to retrieve data from the SMP anki collab sheet
+    https://docs.google.com/spreadsheets/d/1wXG90uXpzrtKjYEhAbXCtH7sMbrx582X8Z_gxwDrcYY/edit#gid=252059345
+
+    Returns an array (list of lists) with 7 columns.
     """
     creds = None
     # The file token.json stores the user's access and refresh tokens, and is
@@ -37,7 +33,7 @@ def main():
         creds = Credentials.from_authorized_user_file('token.json', SCOPES)
     # If there are no (valid) credentials available, let the user log in.
     if not creds or not creds.valid:
-        print("no creds")
+        print("CHECK CREDS")
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
         else:
@@ -48,7 +44,6 @@ def main():
             token.write(creds.to_json())
 
     service = build('sheets', 'v4', credentials=creds)
-
     # Call the Sheets API
     sheet = service.spreadsheets()
     result = sheet.values().get(spreadsheetId=SHEET_ID,
@@ -59,14 +54,10 @@ def main():
     if not values:
         print('No data found.')
     else:
-        for row in values:
-            # Print columns A -> G, which correspond to indices 0 -> 6.
-            print("hellow")
-            print('%s, %s, %s, %s, %s, %s, %s' % (row[0], row[1], row[2], row[3], row[4], row[5], row[6]))
-            # print('%s, %s' % (row[0], row[4]
+        return values
 
 if __name__ == '__main__':
-    main()
+    sheet = get_sheet()
+    print(sheet)
 
 
-#
