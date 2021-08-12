@@ -70,31 +70,68 @@ file = "filename"
 arr = []
 
 
+"""
+use this data frame structure.
+df=
+[[front, back (or cloze), [cloze 1, replace], [cloze 2, replace]...
+]
 
+make count default to 1 
+
+def cloze(data):
+    count = 1
+    remove used clozes
+
+"""
 
 
 def cloze(data):
     '''
+    should be called if data[1]=="cloze"
     "string STRING string c1 string c2"
     return a card
+
+    update for new data frame setup
     '''
-    cloze_count=1
+    cloze_count=2
     ret = ""
     # for n in data[0][1:-1]:
     #look for numbers if number is found check if it's immediately preceded by "c". Should not be double digit clozes lol wtf
-    for n in range(1, len(data)-1):
-        print(n)
-        if int(data[0][n]):
+    print(data)
+    c = ["c", "C"]
+    for n in range(1, len(data[0])):
+        # Check if  start of cloze statement
+        if data[0][n].isnumeric() and data[0][n-1] in c:
+            # First cloze
             if ret == "":
-                ret = data[0][n-1] + data[cloze_count+1] + data[0][n+1]
+                ret = data[0][0:n-1] + data[2] # call cloze formatter
+            # Subsequent clozes
             else:
-                ret = ret[0:n]+ data[cloze_count] + ret[n:]
+                ret = ret[0:-1] + data[cloze_count]
             cloze_count+=1
+        # Normal chars
+        else:
+            ret += data[0][n]
+    print("cloze count:", cloze_count)
     return ret
 
 
-dat = ["1 string STRING c 23 string c1 string c2", "cloze", "CLOZE1", "aMERICA"]
-print(cloze(dat))
+def cloze_it(string, replace="..."):
+    '''
+    Formats cloze statements
+    Always with cloze number 1
+    Default replacement is ..., can be changed with an arguement.
+    '''
+    ret = f'{{c1:: {string}::{replace}}}'
+    return ret
+print(cloze_it("hi", "poop"),
+cloze_it("hi", "help"),
+cloze_it("hi"))
+
+
+
+dat = ["1 string c 23 string c1 string c2 c3", "clozeeee", "CLOZE1", "aMERICA", "Georgetown"]
+# print(cloze(dat))
 
 
 
