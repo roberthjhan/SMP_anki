@@ -9,12 +9,21 @@ from google.oauth2.credentials import Credentials
 modules
 pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
 """
+
 API_KEY = "AIzaSyDbxsmCG4O5egNtvX57vs3avctmwzLPGAc"
 key = API_KEY
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 
 SHEET_ID = "wXG90uXpzrtKjYEhAbXCtH7sMbrx582X8Z_gxwDrcYY"
 SHEET_RANGE = "Approved!A:G"
+
+# API_KEY = "AIzaSyDbxsmCG4O5egNtvX57vs3avctmwzLPGAc"
+# key = API_KEY
+# SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
+#
+# SHEET_ID = "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms"
+# SHEET_RANGE = "Class Data!A2:E"
+
 
 def main():
     """Shows basic usage of the Sheets API.
@@ -52,10 +61,12 @@ def main():
     else:
         for row in values:
             # Print columns A -> G, which correspond to indices 0 -> 6.
+            print("hellow")
             print('%s, %s, %s, %s, %s, %s, %s' % (row[0], row[1], row[2], row[3], row[4], row[5], row[6]))
+            # print('%s, %s' % (row[0], row[4]
 
 if __name__ == '__main__':
     main()
 
 
-
+#
