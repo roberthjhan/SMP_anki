@@ -6,8 +6,8 @@ from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 
 """
-credit google sheets API quickstart document
-modules
+Credit google sheets API quickstart document
+Modules:
 pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
 """
 
@@ -50,7 +50,7 @@ def get_sheet():
     result = sheet.values().get(spreadsheetId=SHEET_ID,
                                 range=SHEET_RANGE,
                                 key=API_KEY).execute()
-    values = result.get('values', [])
+    values = result.get('values', [None])
 
     if not values:
         print('No data found.')

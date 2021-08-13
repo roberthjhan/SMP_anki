@@ -106,21 +106,25 @@ cloze_model = genanki.Model(
 
 def test_cloze(data):
   for card in data:
-    print(card)
+    # print(card)
     my_note = genanki.Note(
       model= cloze_model,
-      fields=[data[1], "None", "None"])
+      fields=[card[1], "None", "None"])
     my_deck.add_note(my_note)
+
 test_cloze(cloze_data)
 
+print(my_deck.notes)
 
-
-
-#import to anki
+# Export for anki
 genanki.Package(my_deck).write_to_file('test.apkg')
 
 
-
+def export(filelist):
+    genanki.Package(histology).write_to_file('Histology.apkg')
+    genanki.Package(biochem).write_to_file('Biochemistry.apkg')
+    genanki.Package(physiology).write_to_file('Physiology.apkg')
+    genanki.Package(anatomy).write_to_file('Anatomy.apkg')
 
 
 
