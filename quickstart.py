@@ -6,12 +6,13 @@ from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 
 """
+credit google sheets API quickstart document
 modules
 pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
 """
 
-API_KEY = "AIzaSyB-vBUhBie0GlWVQvyvJAi69kYth6Duo-E"
-key = API_KEY
+# API_KEY = "AIzaSyB-vBUhBie0GlWVQvyvJAi69kYth6Duo-E"
+key = open("key.txt", "r").read() # Read in API key from key.txt
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 SHEET_ID = "1wXG90uXpzrtKjYEhAbXCtH7sMbrx582X8Z_gxwDrcYY"
 SHEET_RANGE = "Approved!A:G"

@@ -1,39 +1,39 @@
-import genanki
-# import pandas as pd
-modelID = 8
-# modelID should be random number hardcoded into myModel
-# deckID should be a random number hardcoded into myDeck
-
-myModel=genanki.Model(
-    modelID,
-    "DECK",
-    fields = [
-        {"name": "Question"},
-        {"name": "Answer"},
-            ],
-    templates = [
-        {"name": "Card 1",
-        "qfmt": "{{Question}}",
-        "afmt": "{{Frontside}}<hr id='answer'>{{Answer}}"}
-                ])
-
-
-note=genanki.Note(
-    model=myModel,
-    fields = ["Amber", "Alaska"]
-)
-
-
-def gen_cards(n):
-    deck=[]
-    data = [
-            ["hello", "answer"],
-            ["fill_in_blank", "answer"]
-            ]
-    for i in range(0,n):
-        card = Card(data)
-        deck += []
-    return deck
+# import genanki
+# # import pandas as pd
+# modelID = 8
+# # modelID should be random number hardcoded into myModel
+# # deckID should be a random number hardcoded into myDeck
+#
+# myModel=genanki.Model(
+#     modelID,
+#     "DECK",
+#     fields = [
+#         {"name": "Question"},
+#         {"name": "Answer"},
+#             ],
+#     templates = [
+#         {"name": "Card 1",
+#         "qfmt": "{{Question}}",
+#         "afmt": "{{Frontside}}<hr id='answer'>{{Answer}}"}
+#                 ])
+#
+#
+# note=genanki.Note(
+#     model=myModel,
+#     fields = ["Amber", "Alaska"]
+# )
+#
+#
+# def gen_cards(n):
+#     deck=[]
+#     data = [
+#             ["hello", "answer"],
+#             ["fill_in_blank", "answer"]
+#             ]
+#     for i in range(0,n):
+#         card = Card(data)
+#         deck += []
+#     return deck
 
 
 sheet= [['Front', 'Back', 'Cloze1', 'Cloze2', '', 'Image1', 'Image2'],
@@ -137,7 +137,7 @@ sheet= [['Front', 'Back', 'Cloze1', 'Cloze2', '', 'Image1', 'Image2'],
 """
 use this data frame structure.
 df=
-[[front, back (or cloze), [cloze 1, replace], [cloze 2, replace]...
+[[front, back (or cloze), [cloze 1|replace], [cloze 2, replace]...
 ]
 
 make count default to 1 
@@ -149,23 +149,6 @@ def cloze(data):
 """
 
 
-
-
-
-
-
-
-
-def test(sheet):
-    deck = []
-    for i in range(0, len(sheet)):
-        deck+=Card(sheet[i])
-
-
-    for card in deck:
-        print(card)
-
-test(sheet)
 
 def cloze(data):
     '''
@@ -186,10 +169,11 @@ def cloze(data):
         if data[0][n].isnumeric() and data[0][n-1] in c:
             # First cloze
             if ret == "":
-                ret = data[0][0:n-1] + data[2] # call cloze formatter
+                ret = data[0][0:n-1] + cloze_it(data[2]) # Calls the cloze formatter
+                                                        # Future: pass the index of data[cloze] to get c2 and stuff
             # Subsequent clozes
             else:
-                ret = ret[0:-1] + data[cloze_count]
+                ret = ret[0:-1] + cloze_it(data[cloze_count])
             cloze_count+=1
         # Normal chars
         else:
@@ -198,53 +182,24 @@ def cloze(data):
     return ret
 
 
-def cloze_it(string, replace="..."):
+def cloze_it(string, rep="..."):
     '''
     Formats cloze statements
     Always with cloze number 1
-    Default replacement is ..., can be changed with an arguement.
+    Default replacement is ..., can be changed with an indicator in string.
+
+    "cloze statement|replacement" -> "cn::cloze statement::replacement"
     '''
-    ret = f'{{c1:: {string}::{replace}}}'
+    if "|" in string:
+        rep, string = string.split("|")[1], string.split("|")[0]
+        if rep[0] == " ": # Remove unnecessary extra space
+            rep = rep[1:]
+
+    ret = f'{{c1::{string}::{rep}}}'
     return ret
-print(cloze_it("hi", "poop"),
-cloze_it("hi", "help"),
-cloze_it("hi"))
 
 
 
-dat = ["1 string c 23 string c1 string c2 c3", "clozeeee", "CLOZE1", "aMERICA", "Georgetown"]
-# print(cloze(dat))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-def read_from_csv(filename):
-    xl = pd.ExcelFile(filename)
-
-
-
-    pass
 
 
 
