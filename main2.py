@@ -26,7 +26,7 @@ def cloze(data):
         # Normal chars
         else:
             ret += data[0][n]
-    ret = [ret, "cloze", None] + data[3:]
+    ret = [ret, "cloze", ""] + data[3:]
     return ret
 
 
@@ -53,11 +53,13 @@ def cloze_it(string, rep="..."):
 
 test_data2= ["Medial: (c1)\nLateral: (c1)", "cloze", ["to midline", "away from midline"], "", "DECK", "IMAGES", "ATTS"]
 """
-test_data2= ["Medial: c1\nLateral: c1", "cloze", ["to midline", "away from midline"], "", "DECK", "IMAGES", "ATTS"]
+test_data2= [["Meedial: c1\nLateral: c1", "cloze", ["to midline", "away from midline"], "", "DECK", "anatomy, poopoo, peepee", "IMAGES"],
+["weefwefwe: c1\nLatefwefral: c1", "cloze", ["to qweqweqw", "qw qweqweqw midlfffine"], "", "DECK", "anatomy, poopoo, peepee", "IMAGES"]]
 test_data = ["Medial: (c1)\nLateral: (c1)", "cloze", ["to midline", "away from midline"]]
 
+for i in test_data2:
+    print(cloze(i))
 
-print(cloze(test_data2))
 """
 main
 - import data from sheets

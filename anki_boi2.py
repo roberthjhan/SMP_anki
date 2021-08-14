@@ -8,8 +8,7 @@ Contains card models made with genanki
 import random
 random.randint(0, 10000000000)
 """
-import random
-random.randint(0, 10000000000)
+
 
 
 basic_model = genanki.Model(
@@ -55,8 +54,8 @@ cloze_model = genanki.Model(
     {
       'name': 'Cloze',
       'qfmt': '{{cloze:Text}}',
-      'afmt': '{{cloze:Text}}<br>{{cloze:Extra}}<br id="extra">',
-    },
+      'afmt': '{{cloze:Text}}<br>{{Extra}}<br id="extra">',
+    }
   ],
   css='.card {\n font-family: arial;\n font-size: 20px;\n text-align: center;\n color: black;\n background-color: white;\n}\n\n'
       '.cloze {\n font-weight: bold;\n color: blue;\n}\n.nightMode .cloze {\n color: lightblue;\n}',
@@ -88,10 +87,10 @@ def test_cloze(data):
     my_deck.add_note(my_note)
 
 cloze_data = [
-["Meedial: c1\nLateral: c1", "cloze", ["to midline", "away from midline"], "", "DECK", "anatomy, poopoo, peepee", "IMAGES"],
-["weefwefwe: c1\nLatefwefral: c1", "cloze", ["to qweqweqw", "qw qweqweqw midlfffine"], "", "DECK", "anatomy, poopoo, peepee", "IMAGES"],
 ["nothisispatrick.png", "peepeepoopoo", "", "", "DECK", "bio, poopoo, peepee", "IMAGES"],
-["welcometothe krustycrab.png", "peepeepoopoo", "", "", "DECK", "bio, poopoo, peepee", "IMAGES"]
+["welcometothe krustycrab.png", "peepeepoopoo", "", "", "DECK", "bio, poopoo, peepee", "IMAGES"],
+['Meedial: {{c1::to midline::...}}\nLateral: {{c1::to midline::...}}', 'cloze', '', '', 'DECK', 'anatomy, poopoo, peepee', 'IMAGES'],
+['weefwefwe: {{c1::to qweqweqw::...}}\nLatefwefral: {{c1::to qweqweqw::...}}', 'cloze', '', '', 'DECK', 'anatomy, poopoo, peepee', 'IMAGES']
 ]
 
 

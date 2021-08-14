@@ -15,7 +15,40 @@ physiology = genanki.Deck(int, "Physiology")
 # Request sheet from google sheets API
 sheet = get_sheet()
 print(sheet)
+basic_model = genanki.Model(
+      model_id = 5168282460,
+      name = 'Basic',
+      fields = [
+            {'name': 'Front'},
+            {'name': 'Back'},
+            {'name': "Image"}],
+      templates = [
+            {
+              'name': 'Basic Card',
+              'qfmt': '{{Front}}',
+              'afmt': '{{FrontSide}}<hr id="back">{{Back}}<br>{{Image}}<br>',
+            },
+      ],
+    css='.card {\n font-family: arial;\n font-size: 20px;\n text-align: center;\n color: black;\n background-color: white;\n}\n')
 
+cloze_model = genanki.Model(
+      8922529321,
+      'Cloze (genanki)',
+      model_type=genanki.Model.CLOZE,
+      fields=[
+              {'name': 'Text'},
+              {'name': "Extra"}
+            ],
+      templates=[
+                {
+                  'name': 'Cloze',
+                  'qfmt': '{{cloze:Text}}',
+                  'afmt': '{{cloze:Text}}<br>{{Extra}}<br id="extra">',
+                }
+                ],
+      css='.card {\n font-family: arial;\n font-size: 20px;\n text-align: center;\n color: black;\n background-color: white;\n}\n\n'
+          '.cloze {\n font-weight: bold;\n color: blue;\n}\n.nightMode .cloze {\n color: lightblue;\n}'
+        )
 for row in sheet[1]:
     tags = row[4]
     # I need to make this part cooler... This is really dumb
@@ -38,10 +71,17 @@ for row in sheet[1]:
         print("Wtf is this shit bro", tags)
         exit()
 
-
-
-
-
+    if check_cloze(row):
+      my_note = genanki.Note(
+        model= cloze_model,
+        fields=[row[0], row[3]],# Front, Extra, (, card[6]))Images
+        tags= row[5].replace(" ", "").split(","))
+    else:
+      my_note = genanki.Note(
+        model=basic_model,
+        fields=[row[0], row[1], row[6]], # Front, back, Images
+        tags= row[5].replace(" ", "").split(","))
+    deck.add_note(my_note)
 
 
 # Export decks as .apkg files
@@ -56,10 +96,6 @@ def export():
 
 
 
-
-
-for row in sheet[1:]:
-    if check_cloze(row):
 
 
 
