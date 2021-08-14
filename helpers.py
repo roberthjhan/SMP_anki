@@ -19,7 +19,7 @@ def cloze(data):
         # Normal chars
         else:
             ret += data[0][n]
-    ret = [ret, "cloze", None] + data[3:]
+    ret = [ret, "cloze", ""] + data[3:]
     return ret
 
 def cloze_it(string, rep="..."):
@@ -40,6 +40,9 @@ def cloze_it(string, rep="..."):
     return ret
 
 def check_cloze(row):
-    if "close" in row[1].lower():
+    if "cloze" in row[1].lower():
         return True
     return False
+
+d=['c1 this is patrick', 'Cloze', 'no', 'From spongggebob', 'physiology', 'planes, respiration', '']
+print(cloze(d))
