@@ -1,10 +1,3 @@
-
-
-"""
-
-
-"""
-
 def cloze(data):
     '''
     should be called if data[1]=="cloze"
@@ -29,7 +22,6 @@ def cloze(data):
     ret = [ret, "cloze", None] + data[3:]
     return ret
 
-
 def cloze_it(string, rep="..."):
     '''
     Formats cloze statements
@@ -38,39 +30,16 @@ def cloze_it(string, rep="..."):
 
     "cloze statement|replacement" -> "cN::cloze statement::replacement"
     '''
+    # Check for replacement
     if "|" in string:
         rep, string = string.split("|")[1], string.split("|")[0]
         if rep[0] == " ": # Remove unnecessary extra space
             rep = rep[1:]
-
+    # Format cloze
     ret = "{"+f'{{c1::{string}::{rep}}}'+"}"
-    # print("returning: ", ret)
     return ret
-"""
-[
-[front, back (or cloze), [cloze 1|replace], [cloze 2, replace]...
-]
 
-test_data2= ["Medial: (c1)\nLateral: (c1)", "cloze", ["to midline", "away from midline"], "", "DECK", "IMAGES", "ATTS"]
-"""
-test_data2= ["Medial: c1\nLateral: c1", "cloze", ["to midline", "away from midline"], "", "DECK", "IMAGES", "ATTS"]
-test_data = ["Medial: (c1)\nLateral: (c1)", "cloze", ["to midline", "away from midline"]]
-
-
-print(cloze(test_data2))
-"""
-main
-- import data from sheets
-- define the anki pieces
-- start building cards
--- iterate sheet
-- 
-
-
-- upload decks to google drive
-
-
-
-
-"""
-
+def check_cloze(row):
+    if "close" in row[1].lower():
+        return True
+    return False

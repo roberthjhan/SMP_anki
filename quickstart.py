@@ -12,7 +12,7 @@ pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-
 """
 
 # API_KEY = "AIzaSyB-vBUhBie0GlWVQvyvJAi69kYth6Duo-E"
-key = open("key.txt", "r").read() # Read in API key from key.txt
+KEY = open("key.txt", "r").read() # Read in API key from key.txt
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 SHEET_ID = "1wXG90uXpzrtKjYEhAbXCtH7sMbrx582X8Z_gxwDrcYY"
 SHEET_RANGE = "Approved!A:G"
@@ -49,7 +49,7 @@ def get_sheet():
     sheet = service.spreadsheets()
     result = sheet.values().get(spreadsheetId=SHEET_ID,
                                 range=SHEET_RANGE,
-                                key=API_KEY).execute()
+                                key=KEY).execute()
     values = result.get('values', [None])
 
     if not values:
@@ -57,8 +57,9 @@ def get_sheet():
     else:
         return values
 
-if __name__ == '__main__':
-    sheet = get_sheet()
-    print(sheet)
+# if __name__ == '__main__':
+#     sheet = get_sheet()
+#     print(sheet)
 
 
+# BRING IN CLOZE STATEMTNS AS LIST NOT STRING

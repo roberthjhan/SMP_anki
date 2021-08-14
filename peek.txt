@@ -1,0 +1,33 @@
+ValueError: Number of fields in Model does not match number of fields in Note:
+Model(model_id=7312002106, name='Cloze', fields=
+[{'name': 'Front', 'ord': 0, 'font': 'Liberation Sans', 'media': [], 'rtl': False, 'size': 20, 'sticky': False},
+{'name': 'Extra', 'ord': 1, 'font': 'Liberation Sans', 'media': [], 'rtl': False, 'size': 20, 'sticky': False},
+{'name': 'Image', 'ord': 2, 'font': 'Liberation Sans', 'media': [], 'rtl': False, 'size': 20, 'sticky': False},
+{'name': 'Tags', 'ord': 3, 'font': 'Liberation Sans', 'media': [], 'rtl': False, 'size': 20, 'sticky': False}],
+
+templates=[
+{'name': 'Cloze Card',
+'qfmt': '{{cloze:Front}}<hr>{{cloze:Front}}',
+'afmt': '{{cloze:Extra}}<hr>{{cloze:Extra}}<hr id="extra">{{Image}}{{Tags}}',
+'ord': 0, 'bafmt': '', 'bqfmt': '', 'bfont': '', 'bsize': 0, 'did': None}], css='', model_type=1)
+
+has 4 fields, but Note(model=Model
+
+(model_id=7312002106, name='Cloze', fields=
+[{'name': 'Front', 'ord': 0, 'font': 'Liberation Sans', 'media': [], 'rtl': False, 'size': 20, 'sticky': False},
+{'name': 'Extra', 'ord': 1, 'font': 'Liberation Sans', 'media': [], 'rtl': False, 'size': 20, 'sticky': False},
+{'name': 'Image', 'ord': 2, 'font': 'Liberation Sans', 'media': [], 'rtl': False, 'size': 20, 'sticky': False},
+{'name': 'Tags', 'ord': 3, 'font': 'Liberation Sans', 'media': [], 'rtl': False, 'size': 20, 'sticky': False}], 1
+
+templates=[
+{'name': 'Cloze Card',
+'qfmt': '{{cloze:Front}}<hr>{{cloze:Front}}',
+'afmt': '{{cloze:Extra}}<hr>{{cloze:Extra}}<hr id="extra">{{Image}}{{Tags}}',
+'ord': 0, 'bafmt': '', 'bqfmt': '', 'bfont': '', 'bsize': 0, 'did': None}], 2
+css='', model_type=1),
+
+fields=
+['cloze', '', 'IMAGES'],
+sort_field='cloze',
+tags=_TagList(['anatomy', 'poopoo', 'peepee']),
+guid='bqit6~pk&:') has 3 fields.

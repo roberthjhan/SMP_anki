@@ -55,11 +55,7 @@ arr2 =[
   ["cloze test", "hello my {{c1::friend::...}}"],
   ]
 
-cloze_data= [["cloze test", "hello my {{c1::friend::...}}"],
-             ["cloze test improper cloze1", "hello my {{1::friend::...}}"],
-             ["cloze test improper cloze2", "hello my {{c1:friend::...}}"],
-             ["cloze test improper cloze3", "hello my {{c::friend::...}}"],
-              ["cloze test improper cloze4", "hello my {{c1::friend:...}}"],
+cloze_data= [["hello my {{c1::friend::...}}"]
              ]
 
 
@@ -114,13 +110,11 @@ def test_cloze(data):
 
 test_cloze(cloze_data)
 
-print(my_deck.notes)
-
 # Export for anki
 genanki.Package(my_deck).write_to_file('test.apkg')
 
 
-def export(filelist):
+def export():
     genanki.Package(histology).write_to_file('Histology.apkg')
     genanki.Package(biochem).write_to_file('Biochemistry.apkg')
     genanki.Package(physiology).write_to_file('Physiology.apkg')
