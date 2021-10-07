@@ -30,6 +30,7 @@ def upload(filelist):
         pass
 
 
+
 for row in sheet[1:]:
     while len(row)< len(sheet[0]):
         row.append("")
